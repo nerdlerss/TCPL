@@ -15,16 +15,16 @@ void push(double);
 double pop(void);
 int getch(void);
 void ungetch(int);
-
+void clear_val();
 int main(){
     int type; 
-    double op2;
+    double op2,op1;
     char s[MAXOP];
     while((type = getop(s)) != EOF){
         switch (type){
             case NUMBER:
                 push(atof(s));
-                //break;
+                break;
             case '+':
                 push(pop()+pop());
                 break;
@@ -50,12 +50,34 @@ int main(){
                 pop();
                 //printf("\t%.8g\n", pop());
                 break;
+            case 'c':
+                clear_val();
+                break;
+            case 'p':
+                op2 = pop();
+                printf("%f",op2);
+                push(op2);
+                break;
+            case 'z':
+                op2 = pop();
+                push(op2);
+                push(op2);
+                break;
+            case 'r':
+                op2 = pop();
+                op1 = pop();
+                push(op2);
+                push(op1);
+                break;
             default:
                 printf("error: unknown command %s\n", s);
                 break;
         }
     }
     return 0;
+}
+void clear_val(){
+    sp = 0;
 }
 
 void push(double f){
