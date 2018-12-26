@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<ctype.h>
-
+#include<math.h>
 
 #define MAXOP 100
 #define NUMBER '0'
@@ -15,16 +15,16 @@ void push(double);
 double pop(void);
 int getch(void);
 void ungetch(int);
-void clear_val();
+
 int main(){
     int type; 
-    double op2,op1;
+    double op2;
     char s[MAXOP];
     while((type = getop(s)) != EOF){
         switch (type){
             case NUMBER:
                 push(atof(s));
-                break;
+                //break;
             case '+':
                 push(pop()+pop());
                 break;
@@ -47,27 +47,8 @@ int main(){
                 }
                 break;
             case '\n':
-                //pop();
-                printf("\t%.8g\n", pop());
-                break;
-            case 'c':
-                clear_val();
-                break;
-            case 'p':
-                op2 = pop();
-                printf("%f",op2);
-                push(op2);
-                break;
-            case 'z':
-                op2 = pop();
-                push(op2);
-                push(op2);
-                break;
-            case 'r':
-                op2 = pop();
-                op1 = pop();
-                push(op2);
-                push(op1);
+                pop();
+                //printf("\t%.8g\n", pop());
                 break;
             default:
                 printf("error: unknown command %s\n", s);
@@ -75,9 +56,6 @@ int main(){
         }
     }
     return 0;
-}
-void clear_val(){
-    sp = 0;
 }
 
 void push(double f){
@@ -125,12 +103,12 @@ int getop(char s[]){
 char buf[BUFSIZE];
 int bufp = 0;
 
-int getch(void){
+ int getch(void){
      //printf("getch==");
      return (bufp > 0 ? buf[--bufp]:getchar());
-}
+ }
 
-void ungetch(int c){
+ void ungetch(int c){
      if(bufp >= BUFSIZE){
          printf("ungetch : too many characters\n");
      }else{
