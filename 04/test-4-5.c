@@ -7,6 +7,7 @@
 #define NUMBER '0'
 #define MAXVAL 100
 #define BUFSIZE 100
+#define NAME 'n'
 
 int sp = 0;
 double val[MAXVAL];
@@ -24,7 +25,10 @@ int main(){
         switch (type){
             case NUMBER:
                 push(atof(s));
-                //break;
+                break;
+            case NAME:
+                printf("to mather");
+                break;
             case '+':
                 push(pop()+pop());
                 break;
@@ -73,14 +77,36 @@ double pop(void){
         return 0.0;
     }
 }
+void mather(char s[]){
+    if(strcmq(s),"sin" == 0){
+        push(sin(pop()));
+    }
+    //some code 
+
+}
 
 int getop(char s[]){
     int i,c;
     while ((s[0] = c = getch()) == ' ' || c == '\t')
-       printf("c-->%d",c);
+       //printf("c-->%d",c);
     ;
-     
+    
     s[1] = '\0';
+    i = 0;
+    if (islower(c)){
+        while((s[++i] = c = getch())){
+            ;
+        }
+        s[i] = '\0';
+        if (c != EOF){
+            ungetch(c);
+        }
+        if(strlen(s) > 0) {
+            return NAME;
+        }else{
+            return c;
+        }
+    }
     if(!isdigit(c) && c != '.'){
         return c;
     }
@@ -115,3 +141,7 @@ int bufp = 0;
          buf[bufp++] = c;
      }
  }
+ 
+
+
+
