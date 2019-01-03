@@ -5,7 +5,7 @@ int main(){
 
 void itoa(int s,char str[]){
     //12313
-    int i;
+    static int i;
     if (s /10){
         itoa(s/10,s);
     }else{
