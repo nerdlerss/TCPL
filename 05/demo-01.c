@@ -15,26 +15,17 @@ int main(){
     return 0;
 }
 int getint(int *pn){
-    int c,sign,d;
+    int c,sign;
     while (isspace(c = getch())); // 去掉空格
     if( ! isdigit(c) && c != EOF && c != '+' && c != '-'){ 
         ungetch(c); //如果不是数字 直接返回
         return 0;
-    }   
+    }  
     //set num  112
     sign = (c == '-') ? -1:1;
     if (c == '+' || c == '-'){
-        d = c ;
-        if(! isdigit(c = getch())){
-            if ( c !=EOF){
-                ungetch(c);
-            }
-            ungetch(d);
-            return d;
-        }
         c = getch();
     }
-
     for (*pn = 0; isdigit(c); c = getch())
     {   
         *pn = 10 * *pn + (c - '0');

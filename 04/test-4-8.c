@@ -116,8 +116,6 @@ char buf = 0;
       }
       buf = 0;
       return c;
-
-
  }
 
  void ungetch(int c){
