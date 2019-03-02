@@ -20,7 +20,7 @@ int getint(int *pn){
     if( ! isdigit(c) && c != EOF && c != '+' && c != '-'){ 
         ungetch(c); //如果不是数字 直接返回
         return 0;
-    }  
+    } 
     //set num  112
     sign = (c == '-') ? -1:1;
     if (c == '+' || c == '-'){
@@ -40,7 +40,7 @@ int getint(int *pn){
 
 char buf[BUFSIZE];
 int bufp = 0;
-int getch(void){
+int getch(){
     return (bufp>0 ? buf[--bufp]: getchar());   
 }
 
@@ -51,4 +51,45 @@ void ungetch(int c){
         buf[++bufp] = c;
     }
 
+}
+
+void strcpy(char *s,char *t){
+    int  i;
+    i= 0 ;
+    while ((s[i] = t[i] != '\0')){
+        i++;
+    }
+
+}
+void istrpy(char *s ,char *t){
+    while((*s = *t) != '\0'){
+         s++;
+         t++;
+    }
+}
+
+void strpy2(char *s ,char *t){
+     while((*s++ = *t++)!='\0');
+}
+void strpy(char *s,char *t){
+    while(*s++ = *t++);
+}
+
+int strcmp(char *s,char *t){
+    int i;
+    for (i =0 ;s[i]==t[i];i++){
+        if (s[i] == '\0'){
+            return 0;
+        }
+    }
+    return s[i] - t[i];
+}
+
+int istrcmp(char *s ,char *t){
+    for(;*s - *t;s++,t++){
+        if (*s = '\0'){
+            return 0;
+        }
+    }
+    return *s - *t;
 }

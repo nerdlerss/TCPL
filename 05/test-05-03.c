@@ -19,4 +19,4 @@ void  strcats(char *s,char *t){
        // printf("%s",s);
     }
 
-}
+}   

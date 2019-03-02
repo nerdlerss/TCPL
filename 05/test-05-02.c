@@ -3,6 +3,7 @@
 
 #define BUFSIZE 100
 #define SIZE 100
+
 int getfloat(float *);
 int getch(void);
 void ungetch(int c);
@@ -42,12 +43,14 @@ int  getfloat(float *pn){
     }
 
     *pn *=  sign /power;
-    if (c != "EOF"){
+    if (c !=EOF){
         ungetch(c);
     }
     return c;
 }
+ 
 
+ 
 
 char buf[BUFSIZE];
 int bufp = 0;
