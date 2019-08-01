@@ -1,9 +1,15 @@
 #include <stdio.h>
-int mian(){
 
-
+unsigned invert(unsigned x,int p,int n);
+int main(){
+	unsigned int s;
+	s = 77;
+	unsigned int val;
+	val = invert(s,4,3);
+	printf("val : %d \n",val);
+	return 0;	
 }
+	
 unsigned invert(unsigned x,int p,int n){
-    // (~(~0<<0) << (p-n) ^ x;
- 
+	return  (~(~0 << n) << (p+1 -n)) ^ x ; 
 }
