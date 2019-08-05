@@ -19,7 +19,6 @@ void espace(char s[],char t[]){
                 break;
             default:
                 s[j++] =t[i];
-                break;
         }
     }
     s[j] = '\0';
@@ -49,7 +48,6 @@ void unespace(char s[],char t[]){
                     state = 0;
                 }
                 s[j++] = t[i];
-                break;
         }   
 
         s[j] = '\0';
