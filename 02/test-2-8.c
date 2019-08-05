@@ -1,30 +1,37 @@
-#include <stdio.h>
-unsigned rightrot(unsigned x,int n);
-int get_wordlength(void);
+#include<stdio.h>
+
+unsigned rightrot (unsigned x,int n);
+
+int getwordlength(void);
+
 int main(){
-    unsigned r = rightrot(5,3);
-    printf("---->%d",r);
+    int i = getwordlength();
+    unsigned  x,y; 
+    x = 77;
+    y = rightrot(x,3);
+    printf("====>>%u\n",y);
+    return 0;
+
 }
 
-unsigned rightrot(unsigned x,int n){
-    unsigned word_length = get_wordlength();
-    return ((x^0)<<(word_length - n)) ^ x >> n;
-   
-}
-
-int get_wordlength(){
-    unsigned word = ~0;
-    int flag = 1;
-    int inter = 1;
-    while(flag){
-        word = word >>1;
-        if (word > 0){
-            inter ++;
-        }else{
-            flag = 0;
-        }
+unsigned rightrot (unsigned x,int n){
+    unsigned  val,res;
+    res = x;
+    while(n-- >  0){
+	val = (x & 1)<< 31;	
+	x = x >> 1;
+	res = (res >> 1) | val; 
     }
 
-    return inter;
-
+    return res;
 }
+
+
+int getwordlength(void){
+    unsigned s = (unsigned) ~0;
+    int i;
+    for(i= 0;(s = s>> 1)> 0;i++)
+	;
+    return i+1;
+}
+
