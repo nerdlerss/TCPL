@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<math.h>
 
 #include<stdlib.h>
 #include"count.h"
@@ -32,7 +33,7 @@ int main(){
 		case '%':
 		op2 = pop();	
 		if (op2 != 0.0)
-		    push(pop()/op2);	
+		    push(fmod(pop(),op2));	
 		else
 		    printf("error zero divisor\n");
 		break;
