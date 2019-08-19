@@ -9,7 +9,7 @@ int getops(char s[]){
     while ((s[0] = c = getch()) == ' ' || c == '\t')
     ; 
     s[1] = '\0';
-    if(! isdigit(c) && c != '.'){return c;}
+    if(! isdigit(c) && c != '.' &&!islower(c) ){return c;}
     i = 0;
     if(islower(c)){
 	while (islower(s[++i] = c = getch()))

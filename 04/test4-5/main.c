@@ -1,7 +1,11 @@
 #include<stdio.h>
-
+#include<string.h>
+#include<math.h>
 #include<stdlib.h>
 #include"count.h"
+
+void math_func(char s[]);
+
 int main(){
     int type;
     double op2;
@@ -30,7 +34,7 @@ int main(){
 		    printf("error zero divisor\n");
 		break;
 	    case WORD:
-		
+		math_func(s);
 		break;
 	    case '\n':
 		printf("\t%0.8g\n",pop());
@@ -41,4 +45,20 @@ int main(){
 	}
     }
     return 0;
+}
+
+void math_func(char s[]){
+	double op2;
+	if (strcmp("sin",s) == 0 ){
+		push(sin(pop()));
+	}else if (strcmp("exp",s) == 0){
+		push(exp(pop()));
+	}else if (strcmp("pow",s) == 0){
+	     op2 = pop();
+	    push(pow(pop(),op2)); 
+	}else{
+	 	printf("error : %s is not defined\n",s);
+	
+	}
+
 }
