@@ -10,15 +10,16 @@ void ungetch(int c);
 int main(){
     int array[SIZE];
     int n;
-    for (n = 0; n < SIZE && getint(&array[n]) != EOF; n++);
-    printf("n->%d\n",n);
+    int *s = &n;
+    getint(s);
+    printf("val == > %d.\n",n);
     return 0;
 }
 int getint(int *pn){
     int c,sign,d;
-    while (isspace(c = getch())); // 去掉空格
+    while (isspace(c = getch()));
     if( ! isdigit(c) && c != EOF && c != '+' && c != '-'){ 
-        ungetch(c); //如果不是数字 直接返回
+        ungetch(c);
         return 0;
     }   
     //set num  112
@@ -35,10 +36,9 @@ int getint(int *pn){
         c = getch();
     }
 
-    for (*pn = 0; isdigit(c); c = getch())
-    {   
-        *pn = 10 * *pn + (c - '0');
-        printf("*pn --- %d",*pn);
+    for (*pn = 0; isdigit(c); c = getch()){   
+       *pn = 10 * *pn + (c - '0');
+       printf("pn === > %d.",*pn);
     }
     *pn *= sign;
     if (c != EOF){
