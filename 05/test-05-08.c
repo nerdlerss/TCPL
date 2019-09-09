@@ -21,10 +21,10 @@ int day_of_year(int year,int mouth,int day){
     
     int flag;
     flag = year % 4 == 0 && year%100 == 0 || year %400 == 0;
-    if (mount <1 || mouth > 12){
+    if (mouth<1 || mouth > 12){
         return -1;  
     }
-    if (day < 1 || day > day[flag][mouth]){
+    if (day < 1 || day > daytab[flag][mouth]){
         return -1;
     }
 
@@ -39,7 +39,7 @@ void mouth_day(int year,int yestday, int *pmouth ,int *pday){
     int flag;
     flag = year %4 == 0&& year %100 == 0 || year %400 == 0;
     if(year < 1){
-        return -1;
+        return;
     }
 
     
