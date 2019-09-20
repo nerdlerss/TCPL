@@ -8,7 +8,6 @@ int main(int argc, char *argv[]){
         char s[MAXOP];
         while(--argc >  0 ){
             type = getop(s,*argv++);
-            printf("s === > %s\n",s);
             switch(type){
                 case NUMBER:
                     push(atof(s));
