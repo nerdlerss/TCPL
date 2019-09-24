@@ -29,6 +29,7 @@ int main(int argc,char *argv[]){
    char *linekey[LINES];
    int key = 0; 
    int nums = 0;
+
    if(argc == 2  && (*argv[0]) == '-'){
          printf("%s\n",*argv);
          int i = 1; 
@@ -45,57 +46,42 @@ int main(int argc,char *argv[]){
         tailline = TAILLINE;
     }
     
-    head = worker = malloc(tailline * LINES);
-    tail = head + tailline * LINES;
+    head = worker = malloc(MAXLIN * LINES);
+    tail = head +MAXLIN * LINES;
     while ((len = getlines(line,MAXLIN))  >  0) {
         if(worker + len +1 > tail){
            worker =head;
         }
         linekey[key] = worker;
         strcpy(linekey[key],line);
+        
+        printf("key --> %d,line-->%s",key,linekey[key]);
         if(key+1 > LINES){
             key = 0;
         }
-        key++;
         worker += len+1 ;
-
         nums++;
-        
-        printf("key %d\n line %s",key,line);
-     }
-   /*
-   printf("num --- %d\n",nums);
+        key++;
+               
+    }
    int vline = nums % LINES;
-   printf("vline --- %d\n",vline);
-   printf("tailline --- %d\n",tailline);
-   int size = LINES;
-   int first;
-   if (tailline > nums){
-        tailline = nums;
+
+   int first=0;
+   if(tailline > nums){
+           tailline = nums;
    }
-   if (tailline > LINES){
-        tailline = LINES;
-   }
-        
-   if (vline - tailline < 0 ){
-        first = vline -tailline +LINES;
+   if(vline - tailline <0){
+         first = LINES + vline -tailline;
    }else{
-        first = vline - tailline;
+         first = vline - tailline;
    }
+
+   printf("\n\n####################################");
    printf("first ---> %d\n",first);
-   printf("#####################################\n");   
-   */
-   int i;
-   for (i =0;i<LINES;i++){
-        
+   int i = 0;
+   for (i = first;tailline-->0;i = (i + 1) % LINES){
         printf("%d %s",i,linekey[i]);
    }
    return 0;
-   int first;
-   for (i = first;tailline -- >0;i=(i+1)% LINES){
-        printf("%d\n",i);
-        printf("%s",linekey[i]);
-   }
-
    
 }
